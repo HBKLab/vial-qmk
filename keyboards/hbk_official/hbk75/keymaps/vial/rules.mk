@@ -7,7 +7,9 @@ VIALRGB_ENABLE = yes
 VIAL_ENCODERS_ENABLE = yes
 
 # 编码器
-ENCODER_ENABLE = yes		
+ENCODER_ENABLE = no		
+# 编码器映射	
+ENCODER_MAP_ENABLE = no	
 
 # RGB设置
 RGB_MATRIX_ENABLE = yes
