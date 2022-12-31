@@ -48,11 +48,11 @@ void rgb_matrix_indicators_user(void) {
   }
   //大写灯
   if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
-      rgb_matrix_set_color(0, 0, 0, 0); // LED Index, R, G, B
+      rgb_matrix_set_color(0, 255, 255, 255); // LED Index, R, G, B
   }
   //数字锁灯
   if (IS_HOST_LED_ON(USB_LED_NUM_LOCK)){
-      rgb_matrix_set_color(1, 0, 0, 0); // LED Index, R, G, B
+      rgb_matrix_set_color(1, 255, 255, 255); // LED Index, R, G, B
   }
 }
 #endif
