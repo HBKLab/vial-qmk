@@ -7,7 +7,7 @@
 #define PRODUCT_ID      0x1145
 #define DEVICE_VER      0x5146
 #define MANUFACTURER    HBK_OFFicial
-#define PRODUCT         HBK75
+#define PRODUCT         HBK75_V2
 
 /* key matrix size */
 #define MATRIX_ROWS 6
