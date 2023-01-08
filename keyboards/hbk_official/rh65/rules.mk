@@ -7,7 +7,7 @@ EXTRAKEY_ENABLE = yes       # 音频控制和系统控制 (Audio control and Sys
 
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
-SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend 灯光休眠
+SLEEP_LED_ENABLE = yes       # Breathing sleep LED during USB suspend 灯光休眠
 
 NKRO_ENABLE = yes           # 全键无冲
 

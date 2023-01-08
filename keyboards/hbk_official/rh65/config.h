@@ -87,9 +87,6 @@
 #   define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
 
-#ifdef UNDERGLOW_RGB_MATRIX_ENABLE
-#define UG_RGB_MATRIX_ANIMATIONS
-#endif
 
 /* Encoder */
 #ifdef ENCODER_ENABLE
