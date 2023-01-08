@@ -2,6 +2,61 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef RGB_MATRIX_ENABLE
+//eeprom 联合体
+typedef union {
+  uint32_t raw;
+  struct {
+    bool     rgb_anim :1; //在EEPROM定义变量，记录RGB开关状态
+  };
+} user_config_t;
+
+user_config_t user_config;
+
+void keyboard_post_init_user(void) {
+  user_config.raw = eeconfig_read_user(); //从EEPROM读取状态
+}
+
+void eeconfig_init_user(void) {  
+  user_config.raw = 0;
+  user_config.rgb_anim = 1;     //清除EEPROM，默认状态
+  eeconfig_update_user(user_config.raw); 
+}
+
+enum my_keycodes {
+  RGB_ANIM = SAFE_RANGE,  //自定义一个键码
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case RGB_ANIM:
+      if (record->event.pressed) {  //如果按下
+        user_config.rgb_anim ^= 1; //改变RGB状态
+        eeconfig_update_user(user_config.raw);  //更新状态
+      } else { //如果松开  
+      }
+      return false;   
+    default:
+      return true;
+    }   
+}
+
+
+void rgb_matrix_indicators_user(void) {
+  if(user_config.rgb_anim == 0){    
+      rgb_matrix_set_color_all(0, 0, 0);  //所有RGB灯都关闭 
+  }
+  //大写灯
+  if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
+      rgb_matrix_set_color(60, 255, 255, 255); // LED Index, R, G, B
+  }
+  //数字锁灯
+  if (IS_HOST_LED_ON(USB_LED_NUM_LOCK)){
+      rgb_matrix_set_color(19, 255, 255, 255); // LED Index, R, G, B
+  }
+}
+#endif
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
 		KC_SPC, KC_INS, KC_BSPC, KC_ESC, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_SPC, KC_SPC, KC_SPC, 
@@ -13,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [1] = LAYOUT(
-		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+		RGB_ANIM, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
