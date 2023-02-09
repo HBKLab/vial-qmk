@@ -34,7 +34,7 @@
 #    define WS2812_DMA_STREAM STM32_DMA1_STREAM3  // （TIMx_up对应的dma通道） DMA Stream for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
 #    define WS2812_DMA_CHANNEL 3                  // （就是CHx）  DMA Channel for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.               
 
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 175     // 最大亮度限制
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255     // 最大亮度限制
 #    define RGB_DISABLE_WHEN_USB_SUSPENDED true   // 休眠关闭灯效（大概）
 // #    define RGB_MATRIX_CENTER { 96, 32 }          // 中心点
 #    define RGB_MATRIX_KEYPRESSES
