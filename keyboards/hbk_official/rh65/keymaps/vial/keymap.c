@@ -44,13 +44,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void rgb_matrix_indicators_user(void) {
   int LED_NUM = 0;
+  HSV hsv = {0, 0, 255};
   if(user_config.rgb_anim == 0){    
       rgb_matrix_set_color_all(0, 0, 0);  //所有RGB灯都关闭 
   }
   //大写灯
   if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
+    if (hsv.v > (rgb_matrix_get_val() + 25 )) {
+      hsv.v = rgb_matrix_get_val() + 25;
+    }else if (hsv.v > (rgb_matrix_get_val())){
+      hsv.v = rgb_matrix_get_val();
+    }
+    RGB rgb = hsv_to_rgb(hsv);
     for(;LED_NUM<7;LED_NUM++){
-      rgb_matrix_set_color(LED_NUM, 255, 255, 255); // LED Index, R, G, B
+      rgb_matrix_set_color(LED_NUM, rgb.r, rgb.g, rgb.b); // LED Index, R, G, B
     }
   }
 }
