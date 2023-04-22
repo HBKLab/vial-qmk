@@ -23,3 +23,4 @@ FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
 CONSOLE_ENABLE = no         # Console for debug
 COMMAND_ENABLE = no         # Commands for debug and configuration
 
+QUANTUM_LIB_SRC += uart.c
