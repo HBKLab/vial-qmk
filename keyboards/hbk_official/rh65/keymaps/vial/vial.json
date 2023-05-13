@@ -1,5 +1,11 @@
 {
   "name": "RH65",
+  "customKeycodes": [
+    { "name": "_RGB",
+      "title": "RGB开关",
+      "shortName": "RGB"
+    }
+  ],
   "lighting": "vialrgb",
   "matrix": {
     "rows": 5,
