@@ -95,8 +95,8 @@
 #ifdef ENCODER_ENABLE
 #    define ENCODERS_PAD_A { B11 }
 #    define ENCODERS_PAD_B { B10 }
-#    define ENCODER_RESOLUTION 4
-//#    define ENCODER_DIRECTION_FLIP  // 如果旋钮反向，启用此处
+#    define ENCODER_RESOLUTION 2
+#    define ENCODER_DIRECTION_FLIP  // 如果旋钮反向，启用此处
 #endif
 
 

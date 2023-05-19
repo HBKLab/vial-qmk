@@ -1,5 +1,31 @@
 {
-  "name": "HBK75_UART",
+  "name": "HBK68",
+  "customKeycodes": [
+    { "name": "_RGB",
+      "title": "RGB开关",
+      "shortName": "_RGB"
+    },
+    { "name": "_RIGHT",
+      "title": " → ",
+      "shortName": "屏幕"
+    },
+    { "name": "_LEFT",
+      "title": " ← ",
+      "shortName": "屏幕"
+    },
+    { "name": "_GO",
+      "title": "进入",
+      "shortName": "屏幕"
+    },
+    { "name": "_RERURN",
+      "title": "返回",
+      "shortName": "屏幕"
+    },
+    { "name": "_REBOOT",
+      "title": "重启",
+      "shortName": "屏幕"
+    }
+  ],
   "lighting": "vialrgb",
   "matrix": {
     "rows": 5,
